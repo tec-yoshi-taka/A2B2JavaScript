@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>練習用ファイル test</title>
+  </head>
+  <body>
+    <h1 id="test01">練習用のファイルです</h1>
+    <h2>ここの文字を変更してみましょう</h2>
+    <p class="sample01">&lt;script&gt;タグを書きましょう</p>
+    <p class="sample01">console.logを幾つか試しましょう</p>
+    <p class="sample01">HTMLタグ内の文字やCSSも変更しましょう</p>
+    <script>
+      "use strict";
+      let itemName = 'リンゴジュース';
+      console.log(`${itemName}を飲んだ`);
+      document.querySelector('#test01').innerHTML = 'はじめてのJavaScript';
+      document.querySelector('#test01').style.color = 'red';
+
+      const h2 = document.querySelector('h2');
+      h2.innerHTML = 'タグ名は何もつけない';
+      h2.style.fontSize = '100px';
+
+      const sample01 = document.querySelectorAll('.sample01');
+      sample01[0].style.color = 'pink';
+      sample01[1].style.fontSize = '60px';
+      sample01[2].style.background = 'green';
+      sample01[2].addEventListener('click', ()=>{
+        sample01[0].style.background = 'red';
+      });
+      
+    </script>
+  </body>
+</html>
