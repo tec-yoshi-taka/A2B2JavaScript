@@ -97,12 +97,23 @@
     const prev = document.querySelector('#prev');
     const imgBtns = document.querySelectorAll('nav li');
     const mainImgLi = document.querySelectorAll('.imgArea li');
+    const titles = document.querySelectorAll('.message-title');
     let no = 0;
+
+    // アコーディオン
+    titles.forEach((title) => {
+      title.addEventListener('click', () => { 
+        title.nextElementSibling.classList.toggle('none');
+      });
+    });
+
     // ＞クリック
     next.addEventListener('click', () => {
       // console.log('クリック');
       mainImgLi.forEach((img) => {
         img.style.opacity = 0;
+        img.classList.remove('fadeIn');
+        img.classList.remove('fadeOut');
       });
       if (no < 4) {
         no++;
@@ -111,12 +122,20 @@
       }
       console.log(no);
       mainImgLi[no].style.opacity = 1;
+      if(no === 0){
+        mainImgLi[4].classList.add('fadeOut');
+      }else{
+        mainImgLi[no-1].classList.add('fadeOut');
+      }
+      mainImgLi[no].classList.add('fadeIn');
     });
     // ＜クリック
     prev.addEventListener('click', () => {
       // console.log('クリック');
       mainImgLi.forEach((img) => {
         img.style.opacity = 0;
+        img.classList.remove('fadeIn');
+        img.classList.remove('fadeOut');
       });
       if (no > 0) {
         no--;
@@ -125,33 +144,48 @@
       }
       console.log(no);
       mainImgLi[no].style.opacity = 1;
+      if(no === 4){
+        mainImgLi[0].classList.add('fadeOut');
+      }else{
+        mainImgLi[no+1].classList.add('fadeOut');
+      }
+      mainImgLi[no].classList.add('fadeIn');
     });
     // 画像ボタン
-    imgBtns.forEach((btn)=>{
-      btn.addEventListener('mouseenter',()=>{
-        btn.style.opacity = 0.5; 
+    imgBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        mainImgLi.forEach((img) => {
+          img.style.opacity = 0;
+        });
+        let index = Array.from(imgBtns).indexOf(btn);
+        no = index;
+        console.log(index);
+        mainImgLi[no].style.opacity = 1;
       });
-      btn.addEventListener('mouseleave',()=>{
-        btn.style.opacity = 1; 
+      btn.addEventListener('mouseenter', () => {
+        btn.style.opacity = 0.5;
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.opacity = 1;
       });
     });
 
     // 練習
-    document.querySelector('.message-title').innerHTML = 'メッセージ';
-    const titles = document.querySelectorAll('.message-title');
-    titles[1].style.color = '#FF3399';
-    const imgs = document.querySelectorAll('.message-contents img');
-    imgs[2].src = 'images/photo04_thum.jpg';
+    // document.querySelector('.message-title').innerHTML = 'メッセージ';
+    // const titles = document.querySelectorAll('.message-title');
+    // titles[1].style.color = '#FF3399';
+    // const imgs = document.querySelectorAll('.message-contents img');
+    // imgs[2].src = 'images/photo04_thum.jpg';
 
-    titles[0].addEventListener('click', () => {
-      titles[0].style.background = '#FF3399';
-    });
-    titles[1].addEventListener('mousedown', () => {
-      titles[1].style.background = '#FF3399';
-    });
-    titles[2].addEventListener('mouseup', () => {
-      titles[2].style.background = '#FF3399';
-    });
+    // titles[0].addEventListener('click', () => {
+    //   titles[0].style.background = '#FF3399';
+    // });
+    // titles[1].addEventListener('mousedown', () => {
+    //   titles[1].style.background = '#FF3399';
+    // });
+    // titles[2].addEventListener('mouseup', () => {
+    //   titles[2].style.background = '#FF3399';
+    // });
   </script>
 </body>
 
